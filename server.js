@@ -6,10 +6,11 @@ var posts = require('./post.js');
 
 // POINT 1. Enable CORS
 app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // POINT 2. Set a static file for “frontend” folder
-app.use(express.static('www'));
+app.use(express.static('frontend'));
 
 var port = process.env.PORT || 8080;        // set our port
 
@@ -17,9 +18,9 @@ var router = express.Router();              // get an instance of the express Ro
 
 
 // POINT 3. Set API routing to functions in post.js
-router.get('/posts', post.getAllPosts);
-router.get('/user', post.getPostsByUser);
-router.post('/posts', post.insertNewPosts);
+router.get('/posts', posts.getAllPosts);
+router.get('/user', posts.getPostsByUser);
+router.post('/posts', posts.insertNewPosts);
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
